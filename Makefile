@@ -24,6 +24,7 @@ format: ## Do code formating (actually update things)
 	isort --profile=black --lines-after-imports=2 ./tests/ ./$(NAME)
 	black ./tests/ ./$(NAME) # Black is a little too opinionated for the code at the moment!
 
+
 ##@ Utility
 
 .PHONY: lint
@@ -31,6 +32,7 @@ lint: ## Lint code
 	isort --profile=black --lines-after-imports=2 --check-only ./tests/ ./$(NAME) # Been done in format this is relivant is we put this in a pipeline and we fail here
 	black --check ./tests/ ./$(NAME) --diff # Been done in format this is relivant is we put this in a pipeline and we fail here
 	flake8 ./tests/ ./$(NAME)
+
 
 .PHONY: analyse
 analyse: ## Type checking and code complexity
@@ -44,14 +46,23 @@ analyse: ## Type checking and code complexity
 	liccheck
 	mypy $(NAME)
 
+
 .PHONY: test
 test: ## test and analyse # lint analyse
 	python3 -m doctest $(NAME)/*.py
 	pytest
+
 
 .PHONY: build
 build: ## Uninstall package and build the dist
 	pip uninstall -y $(NAME)
 	flit build
 	pip install -e ".[dev,test]"
+	@if [[ -f $(NAME)/app.py ]]; then \
+		pyinstaller $(NAME)/app.py -n $(NAME)-$(shell uname -m) --onefile; else \
+		echo "No $(NAME)/app.py not building single EXE"; fi 
 
+
+.PHONY: releae
+release: ## JIRA something? And put on Github release? And bump release version? Nexus publishing too? Does nexus not get fed by Github? GH is eaisier to "see" for eBin stuff
+	echo "Released!"
