@@ -11,7 +11,7 @@ from typing import Optional
 
 import typer
 
-import modbus_utils
+import typer_demo
 
 
 log = logging.getLogger(__name__)
@@ -49,7 +49,7 @@ def bye(name: Optional[str] = None):
 def version():
     """get the version of the package"""
     # version = pkg_resources.get_distribution(PKG_NAME).version
-    typer.echo(modbus_utils.__version__)
+    typer.echo(typer_demo.__version__)
 
 
 @app.command()
@@ -134,4 +134,3 @@ if __name__ == "__main__":
     log.info("App running...")
 
     main()
-

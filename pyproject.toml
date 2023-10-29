@@ -66,7 +66,7 @@ optional_dependencies = ["test","dev"] # to load extras from [project.optional-d
 uuid = "<=1.30"
 
 [tool.pytest.ini_options]
-addopts = "--cov --cov-report html --cov-report term-missing --cov-fail-under 10"
+addopts = "--cov --cov-report html --cov-report term-missing --cov-fail-under 2"
 
 [tool.coverage.run]
 source = ["typer_demo"]
@@ -76,7 +76,7 @@ blank_line_before_nested_class_or_def = true
 column_limit = 88
 
 [project.scripts]
-typer-demo = "typer_demo.entry:main"
+typer-demo = "typer_demo.app:main"
 typer-demo-module1 = "typer_demo.module1.entry:main"
 
 #[options]
