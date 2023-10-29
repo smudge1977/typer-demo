@@ -14,8 +14,8 @@
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [5020],
-    "appPort": ["5020:5020"],
+	
+    // "appPort": ["5020:5020"],
 	// Use 'postCreateCommand' to run commands after the container is created.
     // # Won't be installed and removes a place with project name
     // pip uninstall -y . || true;

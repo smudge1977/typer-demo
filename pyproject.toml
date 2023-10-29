@@ -2,6 +2,7 @@
 build-backend = "flit_core.buildapi"
 requires = ["flit_core >=3.8.0,<4"]
 
+
 [project]
 name = "typer_demo"
 version = "1.0.0"
@@ -42,6 +43,7 @@ dev = [
 test = [
     "flit ~=3.7.1",
     "pytest-cov ~=3.0.0",
+    #"pytest-cov",
     "pytest",
 ]
 
@@ -67,7 +69,6 @@ uuid = "<=1.30"
 
 [tool.pytest.ini_options]
 addopts = "--cov --cov-report html --cov-report term-missing --cov-fail-under 2"
-
 [tool.coverage.run]
 source = ["typer_demo"]
 
