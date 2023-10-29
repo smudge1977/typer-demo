@@ -14,10 +14,19 @@ import typer
 import typer_demo
 
 
+# from .files_app import app
+
 log = logging.getLogger(__name__)
 
 app = typer.Typer(add_completion=True)
 app = typer.Typer(help=__doc__)
+
+
+# Typer app for 'files' sub application
+# files_app = typer.Typer(name="files", help="Manage files")
+
+# 'files' as sub-app to the main app
+# app.add_typer(files.app, name="files", help="File management commands")
 
 
 def opener():
@@ -105,6 +114,42 @@ def init():
     Initialize the users database.
     """
     typer.echo("Initializing user database")
+
+
+@app.command()
+def greet2(
+    name: str = typer.Argument("world", help="The name to greet", show_default=True)
+):
+    """Example of default values
+    The doc string is the best place to document the command!
+    More so than the <help> attrib on the Arg which only shows
+    in `typer-demo greet2 --help` help for setting"""
+    typer.echo(f"Hello, {name}!")
+
+
+@app.callback()
+def before_command_callback():
+    """This runs before a command to help with data validation"""
+    # Define a callback function to be executed before a command is invoked
+    typer.echo("Before command")
+
+
+@app.command()
+def greet3(name: str):
+    typer.echo(f"Hello, {name}!")
+
+
+@app.command()
+def backup(database: str, output_dir: str, force: bool = False):
+    """Example of switches
+    --force / --no-force  [default: no-force]
+    """
+    if force:
+        typer.echo("Forced backup requested!")
+    else:
+        typer.echo("Regular backup requested.")
+    typer.echo(f"Database: {database}")
+    typer.echo(f"Output directory: {output_dir}")
 
 
 # typer.progressbar()
