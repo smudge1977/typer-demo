@@ -44,7 +44,7 @@ dev = [
 
 test = [
     "flit ~=3.7.1",
-#        "pytest-cov ~=3.0.0",
+    "pytest-cov ~=3.0.0",
     #"pytest-cov",
     "pytest",
 ]
@@ -70,7 +70,7 @@ optional_dependencies = ["test","dev"] # to load extras from [project.optional-d
 uuid = "<=1.30"
 
 [tool.pytest.ini_options]
-#addopts = "--cov --cov-report html --cov-report term-missing --cov-fail-under 2"
+addopts = "--cov --cov-report html --cov-report term-missing --cov-fail-under 2"
 
 [tool.yapf]
 blank_line_before_nested_class_or_def = true
