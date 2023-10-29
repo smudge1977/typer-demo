@@ -1,0 +1,99 @@
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.8.0,<4"]
+
+[project]
+name = "typer_demo"
+version = "1.0.0"
+authors = [
+    {name = "Keith", email = "keith@keithmarston.me.uk"},
+]
+description = "Python typer CLI demo application"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Natural Language :: English",
+    "Programming Language :: Python",
+]
+dependencies = [
+    "typer-cli ~=0.0.13",
+    # "toml ~=0.10.2",
+    # "PyYAML ~=6.0.1",
+    #"pydantic",
+]
+
+[project.optional-dependencies]
+dev = [
+    "flit ~=3.7.1",
+    "isort ==5",
+    "black",
+    "flake8 ==4.0.1",
+    "radon ==6.0.1",
+    "mypy",
+    "yapf ~=0.32.0",
+    "flit ~=3.7.1",
+    "bandit",
+    # "prospector ==1.10.2",
+    "radon==6.0.1",
+    "liccheck",
+]
+
+test = [
+    "flit ~=3.7.1",
+    "pytest-cov ~=3.0.0",
+    "pytest",
+]
+
+[tool.liccheck]
+authorized_licenses = [
+    "MIT",
+    "bsd",
+    "Apache Software",
+    "Zope Public",
+    "Python Software Foundation",
+    "Mozilla Public License 2.0 (MPL 2.0)",
+    "Apache License 2.0",
+]
+unauthorized_licenses = [
+  "gpl v3"
+]
+
+dependencies = true # to load [project.dependencies]
+optional_dependencies = ["test","dev"] # to load extras from [project.optional-dependencies]
+
+[tool.liccheck.authorized_packages]
+uuid = "<=1.30"
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-report html --cov-report term-missing --cov-fail-under 10"
+
+[tool.coverage.run]
+source = ["typer_demo"]
+
+[tool.yapf]
+blank_line_before_nested_class_or_def = true
+column_limit = 88
+
+[project.scripts]
+typer-demo = "typer_demo.entry:main"
+typer-demo-module1 = "typer_demo.module1.entry:main"
+
+#[options]
+#zip_safe = True
+#include_package_data = True
+#
+#[options.package_data]
+#example = data/schema.json, *.txt
+#* = README.md
+## This tells Setuptools to include the example/data/schema.json file, as well as any .txt files found in your example-package. It also tells it to include any README.md files in any package it can find (in case you have multiple packages in your project folder).
+#
+## Then use package resources:
+## from json import load
+## from pkg_resources import resource_stream
+#
+## def load_schema():
+##     return load(resource_stream("example", "data/schema.json"))
+
+
+
