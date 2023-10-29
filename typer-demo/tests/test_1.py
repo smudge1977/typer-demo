@@ -9,6 +9,7 @@ class Test_framework:
         assert typer_demo.__version__ == "0.0.0"
 
     def test_summer(self):
+        print(typer_demo.app.summer(2, 4))
         assert typer_demo.app.summer(1, 4) == 5
 
 
