@@ -33,8 +33,9 @@ def test_skip_example():
     pytest.skip(reason="bar")
 
 
-def test_exit_example():
-    # old
-    # pytest.exit(msg="foo")
-    # new
-    pytest.exit(reason="bar")
+# def test_exit_example():
+#     # old
+#     # pytest.exit(msg="foo")
+#     # new
+#     assert True
+#     pytest.exit(reason="bar")

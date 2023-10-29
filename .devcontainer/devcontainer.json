@@ -19,7 +19,7 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
     // # Won't be installed and removes a place with project name
     // pip uninstall -y . || true;
-	"postCreateCommand": "pip install pip==21.3.1; cd typer-demo; pip install -e '.[dev,test]'",
+	"postCreateCommand": "pip install pip==21.3.1; pip install -e '.[dev,test]'",
     // pip3 install --user -r requirements.txt",
 
 	// Configure tool-specific properties.
