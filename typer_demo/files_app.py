@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Copyright 
+Copyright
 DESCRIPTION:
     this is a the files sub applicaiton
 USAGE EXAMPLE:

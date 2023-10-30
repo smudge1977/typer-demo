@@ -1,12 +1,38 @@
+import importlib.metadata
+from pathlib import Path
+
 import pytest  # noqa
 
 import typer_demo
 from typer_demo.app import summer
 
+
+def get_pyproject_version():
+    root_dir = Path(__file__).parent.parent
+    with open(f"{root_dir}/pyproject.toml", encoding="utf-8") as pyproject_toml:
+        version = (
+            next(line for line in pyproject_toml if line.startswith("version"))
+            .split("=")[1]
+            .strip("'\"\n ")
+        )
+    return version
+
+
 class Test_framework:
     def test_version(self):
-        # TODO: Should match the VERSION file
-        assert typer_demo.__version__ == "0.0.1"
+        assert typer_demo.__version__ == get_pyproject_version()
+
+    def test_version_metadata(self):
+        pytest.skip(
+            reason="Don't understand .metadata.version() issue \
+            where we need to put \
+            missing 1 required positional argument: 'distribution_name'"
+        )  # TODO: GEN-42 https://kodekeith.atlassian.net/browse/GEN-42
+        assert (
+            typer_demo.__version__
+            == get_pyproject_version()
+            == importlib.metadata.version()
+        )
 
     def test_summer(self):
         print(summer(2, 4))
@@ -14,16 +40,16 @@ class Test_framework:
 
 
 def test_fail_example():
-    pytest.skip(reason="Don't understand to point of the fail as it still makes a fail!")
+    pytest.skip(
+        reason="Don't understand to point of the fail as it still makes a fail!"
+    )
     assert 1 == 3
-    
+
     pytest.fail(reason="bar")
-    
+
     # old
     # pytest.fail(msg="foo")
     # new
-    
-    
 
 
 def test_skip_example():

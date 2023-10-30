@@ -22,15 +22,15 @@ help:  ## Display this help
 format: ## Do code formating (actually update things)
 	# yapf --in-place --recursive ./$(NAME) ./tests
 	isort --profile=black --lines-after-imports=2 ./tests/ ./$(NAME)
-	black ./tests/ ./$(NAME) # Black is a little too opinionated for the code at the moment!
+	black ./tests/ ./$(NAME) # Black is a little too opinionated!
 
 
 ##@ Utility
 
 .PHONY: lint
 lint: ## Lint code
-	isort --profile=black --lines-after-imports=2 --check-only ./tests/ ./$(NAME) # Been done in format this is relivant is we put this in a pipeline and we fail here
-	black --check ./tests/ ./$(NAME) --diff # Been done in format this is relivant is we put this in a pipeline and we fail here
+	isort --profile=black --lines-after-imports=2 --check-only ./tests/ ./$(NAME)
+	black --check ./tests/ ./$(NAME) --diff
 	flake8 ./tests/ ./$(NAME)
 
 
@@ -52,6 +52,9 @@ test: ## test and analyse # lint analyse
 	python3 -m doctest $(NAME)/*.py
 	pytest
 
+.PHONY: check
+check: test lint analyse ## Full set of checks
+	echo "We are good for build or release now :)"
 
 .PHONY: build
 build: ## Uninstall package and build the dist

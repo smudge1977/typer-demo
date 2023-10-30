@@ -8,5 +8,6 @@ Released under the the ??? MIT?? license
 
 import importlib.metadata
 
+
 # This will get the version from pyproject.toml
 __version__ = importlib.metadata.version("typer-demo")

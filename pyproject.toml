@@ -57,6 +57,7 @@ authorized_licenses = [
     "Python Software Foundation",
     "Mozilla Public License 2.0 (MPL 2.0)",
     "Apache License 2.0",
+    "ISC License (ISCL)"
 ]
 unauthorized_licenses = [
   "gpl v3"
