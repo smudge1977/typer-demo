@@ -55,6 +55,8 @@ test: ## test and analyse # lint analyse
 
 .PHONY: build
 build: ## Uninstall package and build the dist
+	# Bump minor version 0.0.x or if merging to branch ["main", "master", "release-*"] bump version
+	cicd/version-bump.sh
 	pip uninstall -y $(NAME)
 	flit build
 	pip install -e ".[dev,test]"
