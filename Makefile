@@ -61,7 +61,7 @@ build: ## Uninstall package and build the dist
 	flit build
 	pip install -e ".[dev,test]"
 	@if [[ -f $(NAME)/app.py ]]; then \
-		pyinstaller $(NAME)/app.py -n $(NAME)-$(shell uname -m) --onefile; else \
+		pyinstaller -y $(NAME)/app.py -n $(NAME)-$(shell uname -m) --onefile; else \
 		echo "No $(NAME)/app.py not building single EXE"; fi 
 
 
