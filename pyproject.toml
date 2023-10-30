@@ -39,6 +39,7 @@ dev = [
     # "prospector ==1.10.2",
     "radon==6.0.1",
     "liccheck",
+    "pyinstaller",
 ]
 
 test = [
